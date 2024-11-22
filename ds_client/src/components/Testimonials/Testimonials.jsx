@@ -9,7 +9,7 @@ function Testimonials() {
 
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  const [testimonials, setTestimonials] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
 
@@ -23,10 +23,12 @@ function Testimonials() {
   }
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/testimonials")
+    fetch("http://127.0.0.1:8000/reviews/")
       .then((res) => res.json())
-      .then(setTestimonials)
+      .then(setReviews)
   }, []);
+
+  console.log('Reviews', reviews);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,22 +39,27 @@ function Testimonials() {
       // Get the current date and time
       const date_time = new Date().toLocaleString();
 
-      fetch("http://127.0.0.1:5555/testimonial", {
+      fetch("http://127.0.0.1:8000/reviews/add_review/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name: name, message: message, date_time: date_time })
+        body: JSON.stringify({ username: name, review: message, date_time: date_time })
       })
         .then((response) => {
+          if (response.status ===403)
+          {
+            alert("Review with the same name already exists");
+          }
+          alert("Feedback submitted successfully. Thank you!");
           return response.json();
         })
       // Add new message to the testimonials array
-      setTestimonials((prevMessages) => [
+      setReviews((prevMessages) => [
         ...prevMessages,
         { name, message, date_time },
       ]);
-      alert("Feedback submitted successfully. Thank you!");
+      // alert("Feedback submitted successfully. Thank you!");
 
       // Clear form fields after submission
       setName("");
@@ -69,12 +76,12 @@ function Testimonials() {
   }
 
   //Calculate the total page numbers
-  const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
   // Determine the reviews to display on the current page
   const startIndex = (page - 1) * reviewsPerPage;
   const endIndex = startIndex + reviewsPerPage;
-  const currentReviews = testimonials
+  const currentReviews = reviews
     .slice()
     .reverse()
     .slice(startIndex, endIndex);

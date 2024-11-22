@@ -7,7 +7,7 @@ function Feedback() {
 
     //Fetch testimonials data dynamically
     useEffect(() =>{
-        fetch("http://127.0.0.1:5555/testimonials")
+        fetch("http://127.0.0.1:8000/reviews/")
         .then((res)=>res.json())
         .then(setTestimonials)
       },[]);

@@ -49,7 +49,7 @@ function Reviews({reviews}) {
                       alt="Reviewer"
                     />
                   </div>
-                  <div className="mt-5">{testimonial.message}</div>
+                  <div className="mt-5">{testimonial.review}</div>
                 </p>
                 <div className="rounded overflow-hidden shadow-none px-6 py-2"></div>
               </div>
@@ -59,7 +59,7 @@ function Reviews({reviews}) {
               />
               <div>
                 <p className="text-gray-800 text-base mb-3 text-center">
-                  {testimonial.name}
+                  {testimonial.username}
                 </p>
               </div>
             </div>

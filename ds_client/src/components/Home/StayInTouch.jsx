@@ -22,7 +22,7 @@ function Contact() {
 
     setIsSending(true);
 
-    fetch("http://127.0.0.1:5555/subscribe", {
+    fetch("http://127.0.0.1:8000/subscribe/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function Contact() {
       body: JSON.stringify({ email: email }),
     })
       .then((response) => {
-        if (response.status === 500) {
+        if (response.status === 403) {
           throw new Error("Email already exists.");
         }
         return response.json();

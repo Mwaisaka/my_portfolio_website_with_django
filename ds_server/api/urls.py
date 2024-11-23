@@ -7,7 +7,8 @@ urlpatterns = [
     path('reviews/add_review/', views.add_review, name='add_review'),
     path('reviews/', views.reviews, name='reviews'),
     path('reviews/delete_review/<int:id>/', views.delete_review, name='delete_review'), 
-    path('subscribers/', views.subscribers, name='subscribers'),
+    path('newsletter_subscriber/', views.newsletter_subscriber, name='newsletter_subscriber'),
     path('subscribe/', views.subscribe, name='subscribe'),
-     path('subscribers/delete_subscriber/<int:id>/', views.delete_subscriber, name='delete_subscriber'), 
+    path('newsletter_subscriber/delete_subscriber/<int:id>/', views.delete_subscriber, name='delete_subscriber'), 
+     path('login/', views.login, name="login"),
 ]

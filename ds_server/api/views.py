@@ -2,11 +2,13 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
-from .models import Reviews, Subscribers
+from .models import Reviews, NewsletterSubscriber
 from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your views here.
 @api_view(['GET'])
@@ -77,11 +79,11 @@ def subscribe(request):
             data = json.loads(request.body)
             email = data.get('email')
             
-            existing_subscriber = Subscribers.objects.filter(email=email).first()
+            existing_subscriber = NewsletterSubscriber.objects.filter(email=email).first()
             
             if not existing_subscriber:
                 # Create a new subscriber
-                new_subscriber = Subscribers(email=email)
+                new_subscriber = NewsletterSubscriber(email=email)
                 new_subscriber.save()
                 
                 # Get the current date and time
@@ -103,19 +105,69 @@ def subscribe(request):
 
 @api_view(['GET'])
 @csrf_exempt
-def subscribers(request):
-    subscribers = Subscribers.objects.all().values()
-    return JsonResponse(list(subscribers), safe=False)
+def newsletter_subscriber(request):
+    newsletter_subscriber = NewsletterSubscriber.objects.all().values()
+    return JsonResponse(list(newsletter_subscriber), safe=False)
 
 @api_view(['DELETE'])
 @csrf_exempt
 def delete_subscriber(request,id):
     if request.method == 'DELETE':
         try:
-            subscriber = get_object_or_404(Subscribers, id=id)
+            subscriber = get_object_or_404(NewsletterSubscriber, id=id)
             subscriber.delete()
             return JsonResponse({"message": "Subscriber deleted successfully"}, status=200)
-        except Subscribers.DoesNotExist:
+        except NewsletterSubscriber.DoesNotExist:
             return JsonResponse({"error": "Subscriber does not exist"}, status=404)
     else:
         return JsonResponse({"erro": "Delete request required"}, status=405)
+
+@csrf_exempt  # Exempting CSRF for API requests (can be handled better for production)
+def login(request):
+  if request.method == 'POST':
+    try:
+      # Parse JSON data from the request body
+      data=json.loads(request.body)
+      username = data.get("username")
+      password = data.get("password")
+      
+      # Validate required fields
+      if not all([username, password]):
+          return JsonResponse({"error": "Username and password are required"}, status=400)
+      
+      # Check if the user exists
+      # subscriber_exists = Subscriber.objects.filter(username=username).exists()
+      # if not subscriber_exists:
+      #     return JsonResponse({"error": "Invalid username or password"}, status=401)
+        
+      # Authenticate user
+      # subscriber = authenticate(username=username, password=password)
+      subscriber = authenticate(request, username=username, password=password)
+      
+      if subscriber is not None:
+        # If using session-based authentication
+        # django_login(request, subscriber)
+        
+        # Generate JWT token
+        refresh = RefreshToken.for_user(subscriber)
+                
+        # Sucessfully authenticated
+        return JsonResponse({
+          'message': "Login successful",
+          'token': str(refresh.access_token),
+          'refresh_token': str(refresh),
+          'subscriber': {
+            'id': subscriber.id,
+            'username': subscriber.username,
+            'fullname': subscriber.fullname,
+          }
+        }, status=200)
+      else:
+        # Incorrect username or password
+        return JsonResponse({"error": "Invalid username or password"}, status=401)
+    except json.JSONDecodeError:
+      return JsonResponse({"error":"Invalid JSOn payload"},status=400)
+    except Exception as e:
+      return JsonResponse({"error":str(e)},status=500)
+  else:
+    return JsonResponse({"error":"Post request required"},status=405)

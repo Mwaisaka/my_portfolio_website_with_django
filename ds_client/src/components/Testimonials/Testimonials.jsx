@@ -13,6 +13,8 @@ function Testimonials() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   function updateCharacterCount() {
     if (textareaRef.current && charCountRef.current) {
@@ -23,7 +25,7 @@ function Testimonials() {
   }
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/reviews/")
+    fetch(`${API_URL}/reviews/`)
       .then((res) => res.json())
       .then(setReviews)
   }, []);

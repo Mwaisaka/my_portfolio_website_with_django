@@ -5,9 +5,11 @@ import Reviews from "./Reviews";
 function Feedback() {
     const [testimonials, setTestimonials] = useState([]);
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     //Fetch testimonials data dynamically
     useEffect(() =>{
-        fetch("http://127.0.0.1:8000/reviews/")
+        fetch(`${API_URL}/reviews/`)
         .then((res)=>res.json())
         .then(setTestimonials)
       },[]);

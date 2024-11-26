@@ -68,6 +68,7 @@ MIDDLEWARE = [
 # Allow frontend to access the backend
 CORS_ALLOW_ALL_ORIGINS = True
 
+
 # CORS_ALLOWED_ORIGINS = [
 #     'https://todo-app-j0vq.onrender.com',
 #     'https://todo-app-05sa.onrender.com'

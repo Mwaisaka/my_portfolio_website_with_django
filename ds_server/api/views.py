@@ -9,6 +9,7 @@ from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+import requests
 
 # Create your views here.
 @api_view(['GET'])
@@ -171,3 +172,14 @@ def login(request):
       return JsonResponse({"error":str(e)},status=500)
   else:
     return JsonResponse({"error":"Post request required"},status=405)
+
+def random_quote(request):
+    url = "https://stoic.tekloon.net/stoic-quote"
+    try:
+        response = requests.get(url)
+        data = response.json()
+        quote = data.get("data", {}).get("quote", "No quote available")  # Safely extract the quote
+        return JsonResponse({"quote": quote}, safe=False)  # Return only the quote
+        # return JsonResponse(response.json(), safe=False)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

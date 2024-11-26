@@ -10,5 +10,6 @@ urlpatterns = [
     path('newsletter_subscriber/', views.newsletter_subscriber, name='newsletter_subscriber'),
     path('subscribe/', views.subscribe, name='subscribe'),
     path('newsletter_subscriber/delete_subscriber/<int:id>/', views.delete_subscriber, name='delete_subscriber'), 
-     path('login/', views.login, name="login"),
+    path('login/', views.login, name="login"),
+    path('api/random_quote/', views.random_quote, name='random_quote'),
 ]

@@ -3,7 +3,7 @@ import './Quotes.css'; // Import the CSS file for styling
 
 function Quotes() {
     const [quote, setQuote] = useState(null); // Use state to store the quote
-    const api_url = "http://127.0.0.1:8000/api/random_quote/";
+    const api_url = "https://portfolio-website-qtg9.onrender.com/api/random_quote/";
 
     // Function to fetch data from the API
     async function getapi() {

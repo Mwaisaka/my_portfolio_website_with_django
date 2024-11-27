@@ -41,7 +41,7 @@ function Testimonials() {
       // Get the current date and time
       const date_time = new Date().toLocaleString();
 
-      fetch("http://127.0.0.1:8000/reviews/add_review/", {
+      fetch(`${API_URL}/reviews/add_review/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

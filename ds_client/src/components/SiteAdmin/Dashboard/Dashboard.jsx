@@ -5,7 +5,7 @@ import Profile from "./Profile";
 
 import "./dashboard.css";
 
-const Dashboard = ({ onLogout, onLogin, user }) => {
+const Dashboard = ({onLogin, onLogout, user}) => {
   
   if (user) {
     return (

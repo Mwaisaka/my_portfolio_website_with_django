@@ -3,8 +3,6 @@ import Welcome from "../Home/Welcome";
 import Bio from "../Home/Bio";
 import Profile1 from "../Images/Profile1.png";
 import StayInTouch from "./StayInTouch";
-import Quotes from "../Quotes/Quotes";
-
 
 export default function Home() {
   let slides = [
@@ -31,7 +29,6 @@ export default function Home() {
   ];
   return (
     <div className="animate-swipeUp w-full m-auto pt-3 max-w-none">
-      <Quotes/>
       <Welcome />
       <Bio slides={slides} />
       <StayInTouch />

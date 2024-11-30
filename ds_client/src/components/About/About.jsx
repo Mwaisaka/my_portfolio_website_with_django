@@ -9,6 +9,7 @@ import Experience from "./Experience";
 
 import AboutMe from "../Images/AboutMe.png";
 import Feedback from "../Testimonials/Feedback";
+import Projects from "./Projects";
 
 export default function About() {
   
@@ -103,6 +104,7 @@ export default function About() {
       <Services />
       {/* <Experience /> */}
       <Skills />
+      <Projects />
       <Feedback /> 
      
       <StayInTouch />

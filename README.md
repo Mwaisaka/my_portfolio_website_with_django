@@ -15,7 +15,7 @@ This is a personal website detailing my profile, skills, proficiency and accompl
   <a href="https://frankm-me.onrender.com/" target="_blank">Frank Mwaisaka Portfolio</a>
 </h2>
 <div align="center">
-  <img width="960" alt="image" src="https://user-images.githubusercontent.com/20383021/148535829-e697023d-cf9b-4873-b04c-ab33c465d085.png">
+  <img width="960" alt="image" src="./ds_client/src/components/Images/HomePageSnap.png">
 </div>
 
 ---

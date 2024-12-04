@@ -6,7 +6,8 @@ export default function Header() {
   const [isSupportDropdownOpen, setSupportDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleSupportDropdown = () => setSupportDropdownOpen(!isSupportDropdownOpen);
+  const toggleSupportDropdown = () =>
+    setSupportDropdownOpen(!isSupportDropdownOpen);
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
 
   // Function to close the mobile menu when a link is clicked
@@ -56,7 +57,9 @@ export default function Header() {
             </button>
           </div>
           <div
-            className={`${isMobileMenuOpen ? "block" : "hidden"} justify-between items-center w-full lg:flex lg:w-auto lg:order-1`}
+            className={`${
+              isMobileMenuOpen ? "block" : "hidden"
+            } justify-between items-center w-full lg:flex lg:w-auto lg:order-1`}
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -92,8 +95,22 @@ export default function Header() {
                   onMouseEnter={() => setSupportDropdownOpen(true)}
                   onMouseLeave={() => setSupportDropdownOpen(false)}
                 >
-                  <span className="block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 cursor-pointer">
+                  <span className="block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 cursor-pointer flex items-center justify-between">
                     Portfolio
+                    <svg
+                      className="w-4 h-4 ml-1 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
                   </span>
                   {isSupportDropdownOpen && (
                     <ul className="absolute bg-white pt-2 border border-gray-200 dropdown z-10">

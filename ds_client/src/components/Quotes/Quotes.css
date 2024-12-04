@@ -6,6 +6,8 @@
     height: 50px; /* Adjust height as needed */
     display: flex;
     align-items: center;
+    margin-bottom: -50px;
+    margin-top: 15px;
 }
 
 .scrolling-quote {

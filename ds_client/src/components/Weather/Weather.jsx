@@ -62,7 +62,7 @@ const Weather = () => {
         backgroundImage: `url(${weather_image1})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "500px",
+        height: "600px",
       }}
     >
       <div className="flex flex-col items-center p-4 bg-blue-200 rounded-lg shadow-md w-96">
@@ -81,9 +81,14 @@ const Weather = () => {
         ) : weatherData ? (
           <div className="text-center">
             <h2 className="text-xl font-semibold">{weatherData.name}</h2>
-            <p className="text-lg">
-              {weatherData.weather[0].description} | {weatherData.main.temp}°C
+            <p className="flex justify-center items-center h-full">
+              <img
+                className="block"
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                alt={weatherData.weather[0].description}
+              />
             </p>
+            <p>Temperature: {weatherData.main.temp}°C </p>
             <p>Humidity: {weatherData.main.humidity}%</p>
             <p>Wind Direction: {getWindDirection(weatherData.wind.deg)}</p>
             <p>Wind Speed: {weatherData.wind.speed} m/s</p>

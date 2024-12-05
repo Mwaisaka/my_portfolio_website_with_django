@@ -1,6 +1,7 @@
 import React from "react";
 import MyProfilePhoto from "../Images/MyProfilePhoto.png";
 import { useNavigate } from "react-router-dom";
+import TypeWriter from "./TypeWriter.jsx";
 
 function Welcome() {
   const navigate = useNavigate();
@@ -30,8 +31,11 @@ function Welcome() {
                 👋🏻
               </span>
               <br />I am <strong className="text-4xl">Frank Mwaisaka</strong>,
+              {/* <br />a Fullstack Web Developer. */}
               <br />
-              a Fullstack Web Developer. <br />
+              <strong className="text-2xl">
+                <TypeWriter />
+              </strong>
               <hr
                 className="border-t-2 border-red-700 mb-2"
                 style={{ width: "25%", margin: "15px 0" }}
@@ -64,7 +68,6 @@ function Welcome() {
             <br />I value clarity, empathy, and integrity above all else. These
             ideals guide my approach to problem solving and life in general.
           </p>
-          
           <button
             onClick={() => navigate("/about")}
             className="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4"

@@ -5,23 +5,16 @@ import Reviews from "../Testimonials/Reviews";
 import Skills from "./Skills";
 import Services from "../About/Services";
 import Experience from "./Experience";
-
-
+import { useNavigate } from "react-router-dom";
 import AboutMe from "../Images/AboutMe.png";
 import Feedback from "../Testimonials/Feedback";
 import Projects from "./Projects";
 
 export default function About() {
-  
+  const navigate = useNavigate();
   return (
     <div className="animate-swipeUp w-full m-auto pt-3 max-w-none">
-      <div
-        className="rounded overflow-hidden shadow-none px-6 py-0"
-        // style={{
-        //   marginBottom: "0px",
-        //   marginTop: "0px",
-        // }}
-      >
+      <div className="rounded overflow-hidden shadow-none px-6 py-0">
         <div className="bg-gray-100 py-2">
           <h1 class="text-5xl font-bold text-center text-gray-800 mb-4">
             About Me
@@ -67,12 +60,12 @@ export default function About() {
                 deep into understanding how things work and how they can be
                 improved.
               </p>
-              <a
-                href="/contact"
+              <button
+                onClick={() => navigate("/contact")}
                 className="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4"
               >
                 Contact Me
-              </a>
+              </button>
             </div>
           </div>
           <div className="rounded overflow-hidden shadow-none px-6 py-0">
@@ -105,8 +98,7 @@ export default function About() {
       {/* <Experience /> */}
       <Skills />
       <Projects />
-      <Feedback /> 
-     
+      <Feedback />
       <StayInTouch />
     </div>
   );

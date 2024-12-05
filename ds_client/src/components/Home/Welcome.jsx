@@ -1,9 +1,9 @@
 import React from "react";
-
-import Profile1 from "../Images/Profile1.png";
 import MyProfilePhoto from "../Images/MyProfilePhoto.png";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
+  const navigate = useNavigate();
   return (
     <div
       className="grid grid-cols-1 md:grid-cols-2 gap-5"
@@ -64,12 +64,13 @@ function Welcome() {
             <br />I value clarity, empathy, and integrity above all else. These
             ideals guide my approach to problem solving and life in general.
           </p>
-          <a
-            href="/about"
+          
+          <button
+            onClick={() => navigate("/about")}
             className="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4"
           >
             Learn More
-          </a>
+          </button>
           <br />
           <br />
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-1">

@@ -1,8 +1,9 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import AboutMe from "../Images/AboutMe.png";
 
 function About() {
+  const navigate = useNavigate();
   return (
     <div
       className="rounded overflow-hidden shadow-none px-6 py-4"
@@ -54,6 +55,13 @@ function About() {
             >
               Contact Me
             </a>
+
+            <button
+            onClick={() => navigate("/about")}
+            className="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Learn More
+          </button>
           </div>
         </div>
         <div className="rounded overflow-hidden shadow-none px-6 py-0">
